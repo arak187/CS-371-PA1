@@ -172,7 +172,8 @@ void run_server()
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(server_port);
-    server_addr.sin_addr.s_addr = INADDR_ANY;
+    inet_pton(AF_INET, server_ip, &server_addr.sin_addr);
+    // server_addr.sin_addr.s_addr = INADDR_ANY;
     bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr));
     listen(server_fd, SOMAXCONN);
 
